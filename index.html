@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denver Control Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-theme="noir">
+  <div class="page-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="noise"></div>
+
+    <section class="login-screen" id="loginScreen">
+      <div class="login-panel panel">
+        <img src="./majestic-logo.svg" alt="Majestic" class="login-logo">
+        <div class="login-copy">
+          <p class="eyebrow">Denver</p>
+          <h1>Вход</h1>
+        </div>
+
+        <form class="login-form" id="loginForm">
+          <label>
+            <span>Email</span>
+            <input type="email" id="loginEmail" placeholder="Введите email" required>
+          </label>
+          <label>
+            <span>Пароль</span>
+            <input type="password" id="loginPassword" placeholder="Введите пароль" required>
+          </label>
+          <button type="submit" class="primary-button full-width">Войти</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="app-shell hidden" id="appShell">
+      <header class="topbar panel">
+        <div class="topbar-main">
+          <div class="brand-stack">
+            <p class="eyebrow">Denver</p>
+            <h1 id="pageTitle">Majestic Curators</h1>
+          </div>
+          <div class="topbar-status">
+            <span class="status-chip" id="statusAccountChip">Активен</span>
+            <span class="status-chip muted" id="statusFactionChip">FIB</span>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button type="button" class="identity-pill" id="profileSettingsTrigger">
+            <img src="./majestic-logo.svg" alt="Majestic" class="identity-logo">
+            <div class="identity-text">
+              <strong id="displayNickname">Denver</strong>
+              <small>Роль куратора</small>
+            </div>
+            <span class="role-pill" id="displayRole">Tech</span>
+            <span class="identity-caret">▾</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar panel">
+          <div class="sidebar-brand">
+            <div>
+              <p class="eyebrow">Denver</p>
+              <h2>Система</h2>
+            </div>
+          </div>
+
+          <nav class="nav-list">
+            <button class="nav-item active" data-tab="stats">
+              <span>Статистика</span>
+              <small>Обзор аккаунта</small>
+            </button>
+            <button class="nav-item" data-tab="checks">
+              <span>Проверки</span>
+              <small>Записи и статусы</small>
+            </button>
+            <button class="nav-item" data-tab="reputation">
+              <span>Репутация</span>
+              <small>История изменений</small>
+            </button>
+            <button class="nav-item" data-tab="curators">
+              <span>Кураторы</span>
+              <small>Общий список</small>
+            </button>
+            <button class="nav-item" data-tab="logs">
+              <span>Логи</span>
+              <small>Журнал действий</small>
+            </button>
+            <button class="nav-item" data-tab="editing">
+              <span>Редактирование</span>
+              <small>Параметры сайта</small>
+            </button>
+            <button class="nav-item" data-tab="bot">
+              <span>Бот</span>
+              <small>Подготовка конфигов</small>
+            </button>
+          </nav>
+
+        </aside>
+
+        <main class="content panel">
+          <section class="tab-panel active" data-panel="stats">
+            <div class="stats-grid">
+              <article class="metric-card emphasis">
+                <div class="metric-top">
+                  <span>Всего кураторов</span>
+                  <span class="metric-badge neutral" id="statCuratorsBadge">1</span>
+                </div>
+                <strong id="statCuratorsValue">1</strong>
+                <p>Сейчас в системе только твой аккаунт.</p>
+              </article>
+
+              <article class="metric-card">
+                <div class="metric-top">
+                  <span>Низкая активность</span>
+                  <span class="metric-badge warning" id="statLowActivityBadge">0</span>
+                </div>
+                <strong id="statLowActivityValue">0</strong>
+                <p>Кураторов с плохой активностью пока нет.</p>
+              </article>
+
+              <article class="metric-card">
+                <div class="metric-top">
+                  <span>Баланс репутации</span>
+                  <span class="metric-badge positive" id="statReputationBadge">0</span>
+                </div>
+                <strong id="statReputationValue">0</strong>
+                <p>Репутация стартует с нуля, пока нет записей.</p>
+              </article>
+            </div>
+
+            <div class="content-grid">
+              <article class="glass-card">
+                <div class="section-head">
+                  <div>
+                    <p class="eyebrow">Профиль</p>
+                    <h3>Текущие параметры</h3>
+                  </div>
+                </div>
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span>Никнейм</span>
+                    <strong id="summaryNickname">Denver</strong>
+                  </div>
+                  <div class="detail-row">
+                    <span>Роль</span>
+                    <strong id="summaryRole">Tech</strong>
+                  </div>
+                  <div class="detail-row">
+                    <span>Уровень</span>
+                    <strong id="summaryLevel">10</strong>
+                  </div>
+                  <div class="detail-row">
+                    <span>Фракция</span>
+                    <strong id="summaryFaction">FIB</strong>
+                  </div>
+                  <div class="detail-row">
+                    <span>Проверок</span>
+                    <strong id="summaryChecks">0</strong>
+                  </div>
+                  <div class="detail-row">
+                    <span>Репутация</span>
+                    <strong id="summaryReputation">0</strong>
+                  </div>
+                </div>
+              </article>
+
+              <article class="glass-card">
+                <div class="section-head">
+                  <div>
+                    <p class="eyebrow">Фракции</p>
+                    <h3>Распределение</h3>
+                  </div>
+                </div>
+                <div class="fraction-grid" id="fractionGrid"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="tab-panel" data-panel="checks">
+            <div class="section-toolbar">
+              <div>
+                <p class="eyebrow">Проверки</p>
+                <h3>Записи по аккаунту</h3>
+              </div>
+              <button type="button" class="ghost-button" id="toggleCheckFormButton">Новая проверка</button>
+            </div>
+
+            <div class="editor-card hidden" id="checkFormCard">
+              <form id="checkForm" class="editor-form">
+                <div class="form-grid">
+                  <label>
+                    <span>Фракция</span>
+                    <select id="checkFaction" required>
+                      <option>FIB</option>
+                      <option>LSCSD</option>
+                      <option>EMS</option>
+                      <option>GOV</option>
+                      <option>LSPD</option>
+                      <option>WN</option>
+                      <option>SANG</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Тип</span>
+                    <select id="checkType" required>
+                      <option>Форум</option>
+                      <option>Дискорд</option>
+                      <option>Премии</option>
+                      <option>Ачивки</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Статус</span>
+                    <select id="checkStatus" required>
+                      <option>Проверенно</option>
+                      <option>В процессе</option>
+                      <option>Отстутсвует</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  <span>Комментарий</span>
+                  <input type="text" id="checkComment" placeholder="Короткая заметка">
+                </label>
+                <div class="form-actions">
+                  <button type="submit" class="primary-button">Сохранить</button>
+                  <button type="button" class="ghost-button" data-close="checkFormCard">Закрыть</button>
+                </div>
+              </form>
+            </div>
+
+            <article class="table-card">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Куратор</th>
+                    <th>Фракция</th>
+                    <th>Тип</th>
+                    <th>Статус</th>
+                    <th>Комментарий</th>
+                  </tr>
+                </thead>
+                <tbody id="checksTableBody"></tbody>
+              </table>
+            </article>
+          </section>
+
+          <section class="tab-panel" data-panel="reputation">
+            <div class="section-toolbar">
+              <div>
+                <p class="eyebrow">Репутация</p>
+                <h3>История изменений</h3>
+              </div>
+              <button type="button" class="ghost-button" id="toggleReputationFormButton">Изменить репутацию</button>
+            </div>
+
+            <div class="editor-card hidden" id="reputationFormCard">
+              <form id="reputationForm" class="editor-form">
+                <div class="form-grid">
+                  <label>
+                    <span>Значение</span>
+                    <input type="number" id="reputationDelta" placeholder="Например 5 или -3" required>
+                  </label>
+                  <label>
+                    <span>Причина</span>
+                    <input type="text" id="reputationReason" placeholder="Причина изменения" required>
+                  </label>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="primary-button">Сохранить</button>
+                  <button type="button" class="ghost-button" data-close="reputationFormCard">Закрыть</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="content-grid single">
+              <article class="glass-card">
+                <div class="section-head">
+                  <div>
+                    <p class="eyebrow">Баланс</p>
+                    <h3>Текущая репутация</h3>
+                  </div>
+                  <span class="big-reputation" id="reputationTotal">0</span>
+                </div>
+                <div class="timeline" id="reputationList"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="tab-panel" data-panel="curators">
+            <div class="content-grid curator-layout">
+              <article class="glass-card">
+                <div class="section-head">
+                  <div>
+                    <p class="eyebrow">Кураторы</p>
+                    <h3>Общий список кураторов</h3>
+                  </div>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Никнейм</th>
+                      <th>Уровень</th>
+                      <th>Роль</th>
+                      <th>Фракция</th>
+                      <th>Репутация</th>
+                      <th>Проверки</th>
+                    </tr>
+                  </thead>
+                  <tbody id="curatorTableBody"></tbody>
+                </table>
+              </article>
+
+              <article class="glass-card">
+                <div class="section-head">
+                  <div>
+                    <p class="eyebrow">Карточка</p>
+                    <h3>Выбранный куратор</h3>
+                  </div>
+                </div>
+                <form id="curatorForm" class="editor-form">
+                  <div class="form-grid">
+                    <label>
+                      <span>Никнейм</span>
+                      <input type="text" id="curatorNickname" required>
+                    </label>
+                    <label>
+                      <span>Email</span>
+                      <input type="email" id="curatorEmail" readonly>
+                    </label>
+                    <label>
+                      <span>Уровень</span>
+                      <select id="curatorLevel">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Запрос фракции</span>
+                      <select id="curatorFaction">
+                        <option>FIB</option>
+                        <option>LSCSD</option>
+                        <option>EMS</option>
+                        <option>GOV</option>
+                        <option>LSPD</option>
+                        <option>WN</option>
+                        <option>SANG</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="detail-row inline">
+                    <span>Текущая роль</span>
+                    <strong id="curatorRolePreview">Tech</strong>
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" class="primary-button">Сохранить</button>
+                  </div>
+                </form>
+              </article>
+            </div>
+          </section>
+
+          <section class="tab-panel" data-panel="logs">
+            <div class="section-toolbar">
+              <div>
+                <p class="eyebrow">Логи</p>
+                <h3>Журнал действий</h3>
+              </div>
+              <button type="button" class="ghost-button" id="clearLogsButton">Очистить</button>
+            </div>
+            <article class="glass-card">
+              <div class="log-list" id="logsList"></div>
+            </article>
+          </section>
+
+          <section class="tab-panel" data-panel="editing">
+            <article class="glass-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Редактирование</p>
+                  <h3>В разработке</h3>
+                </div>
+              </div>
+              <div class="empty-state">В разработке</div>
+            </article>
+          </section>
+
+          <section class="tab-panel" data-panel="bot">
+            <article class="glass-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Бот</p>
+                  <h3>В разработке</h3>
+                </div>
+              </div>
+              <div class="empty-state">В разработке</div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <aside class="settings-drawer" id="settingsDrawer">
+      <div class="drawer-card">
+        <div class="drawer-head">
+          <div class="drawer-profile">
+            <img src="./majestic-logo.svg" alt="Majestic" class="drawer-logo">
+            <div>
+              <strong id="drawerNickname">Denver</strong>
+              <small>Роль куратора</small>
+              <span class="role-pill" id="drawerRole">Tech</span>
+            </div>
+          </div>
+          <button type="button" class="icon-button" id="closeSettingsButton" aria-label="Закрыть">✕</button>
+        </div>
+
+        <form id="settingsForm" class="editor-form">
+          <label>
+            <span>Никнейм</span>
+            <input type="text" id="settingsNickname" required>
+          </label>
+          <label>
+            <span>Тема</span>
+            <div class="custom-select" id="themeSelect">
+              <button type="button" class="custom-select-trigger" id="themeSelectTrigger" aria-expanded="false">
+                <span id="themeSelectValue">Черная</span>
+                <span class="custom-select-arrow">▾</span>
+              </button>
+              <div class="custom-select-menu" id="themeSelectMenu">
+                <button type="button" class="custom-select-option" data-theme-option="noir">Черная</button>
+                <button type="button" class="custom-select-option" data-theme-option="obsidian">Обсидиан</button>
+                <button type="button" class="custom-select-option" data-theme-option="steel">Сталь</button>
+                <button type="button" class="custom-select-option" data-theme-option="midnight">Ночной</button>
+              </div>
+            </div>
+          </label>
+          <label>
+            <span>Discord ID</span>
+            <input type="text" id="settingsDiscordId">
+          </label>
+          <div class="form-actions stacked">
+            <button type="submit" class="primary-button">Сохранить</button>
+            <button type="button" class="ghost-button" id="logoutButton">Выйти</button>
+          </div>
+        </form>
+      </div>
+    </aside>
+
+    <div class="theme-wave" id="themeWave"></div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
