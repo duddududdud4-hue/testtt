@@ -92,6 +92,10 @@ body {
   font-family: "Manrope", sans-serif;
   color: var(--text);
   background:
+    radial-gradient(circle at top left, rgba(120, 130, 150, 0.16), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06), transparent 24%),
+    linear-gradient(180deg, var(--bg) 0%, #090d14 100%);
+  background:
     radial-gradient(circle at top left, color-mix(in srgb, var(--accent-2) 20%, transparent), transparent 28%),
     radial-gradient(circle at bottom right, color-mix(in srgb, var(--accent) 18%, transparent), transparent 24%),
     linear-gradient(180deg, var(--bg) 0%, #090d14 100%);
@@ -155,6 +159,7 @@ img {
   height: 340px;
   top: -110px;
   right: 8%;
+  background: rgba(150, 165, 191, 0.18);
   background: color-mix(in srgb, var(--accent-2) 25%, transparent);
 }
 
@@ -163,6 +168,7 @@ img {
   height: 280px;
   bottom: 4%;
   left: -40px;
+  background: rgba(255, 255, 255, 0.08);
   background: color-mix(in srgb, var(--accent) 18%, transparent);
   animation-delay: -4s;
 }
@@ -303,6 +309,7 @@ select {
 input:focus,
 select:focus {
   border-color: var(--line-strong);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
@@ -340,6 +347,8 @@ option {
   padding: 13px 18px;
   color: #081017;
   font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), #d7ddeb);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
   background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, white));
   box-shadow: 0 16px 40px color-mix(in srgb, var(--accent) 25%, transparent);
 }
@@ -430,6 +439,7 @@ option {
 
 .status-chip {
   color: #07131a;
+  background: rgba(232, 237, 248, 0.88);
   background: color-mix(in srgb, var(--accent) 85%, white);
 }
 
@@ -542,6 +552,7 @@ option {
 
 .nav-item.active {
   border-color: var(--line-strong);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(170, 180, 200, 0.05));
   background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, transparent), color-mix(in srgb, var(--accent-2) 10%, transparent));
 }
 
@@ -618,6 +629,9 @@ option {
 }
 
 .metric-card.emphasis {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 35%),
+    linear-gradient(180deg, rgba(25, 28, 34, 0.92), var(--panel));
   background:
     radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 20%, transparent), transparent 35%),
     linear-gradient(180deg, color-mix(in srgb, var(--panel-strong) 75%, transparent), var(--panel));
@@ -701,6 +715,7 @@ option {
 
 .custom-select-trigger[aria-expanded="true"] {
   border-color: var(--line-strong);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent);
   transform: translateY(-1px);
 }
@@ -845,6 +860,7 @@ tbody tr:hover {
   margin-top: 6px;
   border-radius: 50%;
   background: var(--accent);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
   box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
@@ -905,6 +921,7 @@ tbody tr:hover {
 .drawer-card {
   padding: 24px;
   border-radius: 28px;
+  background: linear-gradient(180deg, rgba(22, 24, 28, 0.96), rgba(14, 15, 18, 0.96));
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--panel-strong) 84%, transparent), color-mix(in srgb, var(--panel) 92%, transparent));
 }
@@ -957,6 +974,7 @@ tbody tr:hover {
   pointer-events: none;
   opacity: 0;
   transform: translate(-50%, -50%) scale(0);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(150, 165, 191, 0.45) 58%, transparent 74%);
   background: radial-gradient(circle, color-mix(in srgb, var(--accent-2) 80%, white) 0%, color-mix(in srgb, var(--accent) 62%, transparent) 58%, transparent 74%);
   z-index: 40;
 }
